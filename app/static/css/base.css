@@ -2,6 +2,8 @@
 
 :root {
 	--white: #ffffff;
+	--light-gray: #d9d9d94d;
+	--black: #000000;
 	--beige: #fbe3dd;
 	--yellow: #f4ed5e;
 	--light-red: #ff7a7e;
@@ -10,7 +12,6 @@
 	--purple: #8332b8;
 	--mint: #61d5ba;
 	--green: #006f6e;
-	--light-gray: #d9d9d94d;
 }
 
 /* mobile breakpoint */
@@ -48,6 +49,7 @@
 	font-weight: bold;
 	font-size: 24px;
 	padding: 0 20px;
+	color: var(--black);
 }
 
 .cs-nav-item:hover {
@@ -91,5 +93,37 @@
 	.cs-nav-dropdown-item:hover {
 		color: var(--purple);
 		cursor: pointer;
+	}
+
+	#nav-dropdown-comparison {
+		margin-left: auto;
+		margin-right: 220px;
+		background-color: var(--white);
+		box-shadow: 0 10px 26px 0 rgba(0, 0, 0, 0.25);
+		border-radius: 22px;
+		width: 200px;
+		height: 150px;
+		display: none;
+	}
+
+	.cs-nav-dropdown-comparison-section {
+		padding: 35px;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.cs-navbar-icon-rotate {
+		animation-name: rotate;
+		animation-duration: 1s;
+		animation-fill-mode: forwards;
+	}
+
+	@keyframes rotate {
+		from {
+			transform: rotate(0deg);
+		}
+		to {
+			transform: rotate(180deg);
+		}
 	}
 }
