@@ -1,0 +1,95 @@
+/** @format */
+
+:root {
+	--white: #ffffff;
+	--beige: #fbe3dd;
+	--yellow: #f4ed5e;
+	--light-red: #ff7a7e;
+	--hot-pink: #f70072;
+	--pink: #ff7ee0;
+	--purple: #8332b8;
+	--mint: #61d5ba;
+	--green: #006f6e;
+	--light-gray: #d9d9d94d;
+}
+
+/* mobile breakpoint */
+
+.cs-navbar {
+	background-color: var(--light-gray);
+	padding-left: 20px;
+	padding-right: 20px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.cs-logo {
+	font-weight: bold;
+	font-size: 24px;
+}
+
+.cs-logo:hover {
+	cursor: pointer;
+}
+
+.cs-logo-clr-1 {
+	color: var(--purple);
+}
+
+.cs-logo-clr-2 {
+	color: var(--hot-pink);
+}
+
+.cs-nav-items-desktop {
+	display: none;
+}
+
+.cs-nav-item {
+	font-weight: bold;
+	font-size: 24px;
+	padding: 0 20px;
+}
+
+.cs-nav-item:hover {
+	cursor: pointer;
+	color: var(--hot-pink);
+}
+
+/* desktop breakpoint */
+@media only screen and (min-width: 992px) {
+	.cs-logo {
+		font-size: 30px;
+	}
+	.cs-nav-items-mobile {
+		display: none;
+	}
+
+	.cs-nav-items-desktop {
+		display: inline;
+	}
+
+	#nav-dropdown-algorithms {
+		margin-left: auto;
+		margin-right: 40px;
+		background-color: var(--white);
+		box-shadow: 0 10px 26px 0 rgba(0, 0, 0, 0.25);
+		border-radius: 22px;
+		width: 575px;
+		height: 300px;
+		display: none;
+	}
+
+	.cs-nav-dropdown-algorithms-section {
+		width: 50%;
+		padding: 50px;
+	}
+
+	.cs-nav-dropdown-header {
+		font-weight: bold;
+	}
+
+	.cs-nav-dropdown-item:hover {
+		color: var(--purple);
+		cursor: pointer;
+	}
+}
