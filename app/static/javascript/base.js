@@ -22,29 +22,25 @@ window.addEventListener("load", function () {
 	const comparisonIcon = document.getElementById("nav-item-comparison-icon");
 	const changelogIcon = document.getElementById("nav-item-changelog-icon");
 
+	let activeNavButton = null;
+
 	/* ===========================================
     FUNCTIONS
     =========================================== */
-	function toggleAlgorithmsDropdown() {
-		if (navDropdownAlgorithms.style.display === "none") {
-			console.log("algo on ");
-
+	function toggleAlgorithmsDropdown(toggle) {
+		if (toggle) {
 			algorithmsNavItem.style.color = "var(--hot-pink)";
 			navDropdownAlgorithms.style.display = "flex";
 			algorithmsIcon.classList.add("cs-navbar-icon-rotate");
 		} else {
-			console.log("algo off");
-
 			algorithmsNavItem.style.color = "var(--black)";
 			navDropdownAlgorithms.style.display = "none";
 			algorithmsIcon.classList.remove("cs-navbar-icon-rotate");
 		}
 	}
 
-	function toggleComparisonDropdown() {
-		console.log("comp");
-
-		if (navDropdownComparison.style.display === "none") {
+	function toggleComparisonDropdown(toggle) {
+		if (toggle) {
 			comparisonNavItem.style.color = "var(--hot-pink)";
 			navDropdownComparison.style.display = "flex";
 			comparisonIcon.classList.add("cs-navbar-icon-rotate");
@@ -55,10 +51,8 @@ window.addEventListener("load", function () {
 		}
 	}
 
-	function toggleChangelogDropdown() {
-		console.log("change");
-
-		if (navDropdownChangelog.style.display === "none") {
+	function toggleChangelogDropdown(toggle) {
+		if (toggle) {
 			changelogNavItem.style.color = "var(--hot-pink)";
 			navDropdownChangelog.style.display = "block";
 			changelogIcon.classList.add("cs-navbar-icon-rotate");
@@ -73,19 +67,44 @@ window.addEventListener("load", function () {
     EVENT LISTENERS
     =========================================== */
 	algorithmsNavItem.addEventListener("click", function (e) {
-		console.log(e.target);
-		toggleAlgorithmsDropdown();
+		if (activeNavButton == "algorithm") {
+			activeNavButton = null;
+			toggleAlgorithmsDropdown(false);
+			toggleComparisonDropdown(false);
+			toggleChangelogDropdown(false);
+		} else {
+			activeNavButton = "algorithm";
+			toggleAlgorithmsDropdown(true);
+			toggleComparisonDropdown(false);
+			toggleChangelogDropdown(false);
+		}
 	});
 
 	comparisonNavItem.addEventListener("click", function (e) {
-		console.log(e.target);
-
-		toggleComparisonDropdown();
+		if (activeNavButton == "comparison") {
+			activeNavButton = null;
+			toggleAlgorithmsDropdown(false);
+			toggleComparisonDropdown(false);
+			toggleChangelogDropdown(false);
+		} else {
+			activeNavButton = "comparison";
+			toggleComparisonDropdown(true);
+			toggleAlgorithmsDropdown(false);
+			toggleChangelogDropdown(false);
+		}
 	});
 
 	changelogNavItem.addEventListener("click", function (e) {
-		console.log(e.target);
-
-		toggleChangelogDropdown();
+		if (activeNavButton == "changelog") {
+			activeNavButton = null;
+			toggleAlgorithmsDropdown(false);
+			toggleComparisonDropdown(false);
+			toggleChangelogDropdown(false);
+		} else {
+			activeNavButton = "changelog";
+			toggleChangelogDropdown(true);
+			toggleAlgorithmsDropdown(false);
+			toggleComparisonDropdown(false);
+		}
 	});
 });
