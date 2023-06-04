@@ -8,103 +8,95 @@ window.addEventListener("load", function () {
     =========================================== */
 
 	// nav buttons
-	const algorithmsNavItem = document.getElementById("nav-item-algorithms");
-	const comparisonNavItem = document.getElementById("nav-item-comparison");
-	const changelogNavItem = document.getElementById("nav-item-changelog");
+	const algorithmsNavButton = document.getElementById("nav-item-algorithms");
+	const comparisonNavButton = document.getElementById("nav-item-comparison");
+	const changelogNavButton = document.getElementById("nav-item-changelog");
 
 	// nav dropdowns
-	const navDropdownAlgorithms = document.getElementById("nav-dropdown-algorithms");
-	const navDropdownComparison = document.getElementById("nav-dropdown-comparison");
-	const navDropdownChangelog = document.getElementById("nav-dropdown-changelog");
+	const algorithmsNavDropdown = document.getElementById("nav-dropdown-algorithms");
+	const comparisonNavDropdown = document.getElementById("nav-dropdown-comparison");
+	const changelogNavDropdown = document.getElementById("nav-dropdown-changelog");
 
 	// nav button icons
 	const algorithmsIcon = document.getElementById("nav-item-algorithms-icon");
 	const comparisonIcon = document.getElementById("nav-item-comparison-icon");
 	const changelogIcon = document.getElementById("nav-item-changelog-icon");
 
-	let activeNavButton = null;
+	let navDropdownControls = {
+		algorithm: false,
+		comparison: false,
+		changelog: false,
+	};
 
 	/* ===========================================
     FUNCTIONS
     =========================================== */
-	function toggleAlgorithmsDropdown(toggle) {
-		if (toggle) {
-			algorithmsNavItem.style.color = "var(--hot-pink)";
-			navDropdownAlgorithms.style.display = "flex";
-			algorithmsIcon.classList.add("cs-navbar-icon-rotate");
-		} else {
-			algorithmsNavItem.style.color = "var(--black)";
-			navDropdownAlgorithms.style.display = "none";
-			algorithmsIcon.classList.remove("cs-navbar-icon-rotate");
-		}
-	}
 
-	function toggleComparisonDropdown(toggle) {
-		if (toggle) {
-			comparisonNavItem.style.color = "var(--hot-pink)";
-			navDropdownComparison.style.display = "flex";
-			comparisonIcon.classList.add("cs-navbar-icon-rotate");
-		} else {
-			comparisonNavItem.style.color = "var(--black)";
-			navDropdownComparison.style.display = "none";
-			comparisonIcon.classList.remove("cs-navbar-icon-rotate");
-		}
-	}
+	function toggleNavDropdowns(toggles) {
+		let currentNavButton;
+		let currentNavDropdown;
+		let currentIcon;
 
-	function toggleChangelogDropdown(toggle) {
-		if (toggle) {
-			changelogNavItem.style.color = "var(--hot-pink)";
-			navDropdownChangelog.style.display = "block";
-			changelogIcon.classList.add("cs-navbar-icon-rotate");
-		} else {
-			changelogNavItem.style.color = "var(--black)";
-			navDropdownChangelog.style.display = "none";
-			changelogIcon.classList.remove("cs-navbar-icon-rotate");
+		// iterate through the object and set the current DOM elements to update
+		for (const [key, value] of Object.entries(toggles)) {
+			if (key === "algorithm") {
+				currentNavButton = algorithmsNavButton;
+				currentNavDropdown = algorithmsNavDropdown;
+				currentIcon = algorithmsIcon;
+			} else if (key === "comparison") {
+				currentNavButton = comparisonNavButton;
+				currentNavDropdown = comparisonNavDropdown;
+				currentIcon = comparisonIcon;
+			} else {
+				currentNavButton = changelogNavButton;
+				currentNavDropdown = changelogNavDropdown;
+				currentIcon = changelogIcon;
+			}
+
+			// if value is true, display dropdown
+			// otherwise, hide dropdown
+			if (value) {
+				currentNavButton.style.color = "var(--hot-pink)";
+				currentNavDropdown.style.display = currentNavDropdown === algorithmsNavDropdown ? "flex" : "block";
+				currentIcon.classList.add("cs-navbar-icon-rotate");
+			} else {
+				currentNavButton.style.color = "var(--black)";
+				currentNavDropdown.style.display = "none";
+				currentIcon.classList.remove("cs-navbar-icon-rotate");
+			}
 		}
 	}
 
 	/* ===========================================
     EVENT LISTENERS
     =========================================== */
-	algorithmsNavItem.addEventListener("click", function (e) {
-		if (activeNavButton == "algorithm") {
-			activeNavButton = null;
-			toggleAlgorithmsDropdown(false);
-			toggleComparisonDropdown(false);
-			toggleChangelogDropdown(false);
+	algorithmsNavButton.addEventListener("click", function (e) {
+		if (navDropdownControls["algorithm"] === true) {
+			navDropdownControls["algorithm"] = false;
+			toggleNavDropdowns(navDropdownControls);
 		} else {
-			activeNavButton = "algorithm";
-			toggleAlgorithmsDropdown(true);
-			toggleComparisonDropdown(false);
-			toggleChangelogDropdown(false);
+			navDropdownControls["algorithm"] = true;
+			toggleNavDropdowns(navDropdownControls);
 		}
 	});
 
-	comparisonNavItem.addEventListener("click", function (e) {
-		if (activeNavButton == "comparison") {
-			activeNavButton = null;
-			toggleAlgorithmsDropdown(false);
-			toggleComparisonDropdown(false);
-			toggleChangelogDropdown(false);
+	comparisonNavButton.addEventListener("click", function (e) {
+		if (navDropdownControls["comparison"] === true) {
+			navDropdownControls["comparison"] = false;
+			toggleNavDropdowns(navDropdownControls);
 		} else {
-			activeNavButton = "comparison";
-			toggleComparisonDropdown(true);
-			toggleAlgorithmsDropdown(false);
-			toggleChangelogDropdown(false);
+			navDropdownControls["comparison"] = true;
+			toggleNavDropdowns(navDropdownControls);
 		}
 	});
 
-	changelogNavItem.addEventListener("click", function (e) {
-		if (activeNavButton == "changelog") {
-			activeNavButton = null;
-			toggleAlgorithmsDropdown(false);
-			toggleComparisonDropdown(false);
-			toggleChangelogDropdown(false);
+	changelogNavButton.addEventListener("click", function (e) {
+		if (navDropdownControls["changelog"] === true) {
+			navDropdownControls["changelog"] = false;
+			toggleNavDropdowns(navDropdownControls);
 		} else {
-			activeNavButton = "changelog";
-			toggleChangelogDropdown(true);
-			toggleAlgorithmsDropdown(false);
-			toggleComparisonDropdown(false);
+			navDropdownControls["changelog"] = true;
+			toggleNavDropdowns(navDropdownControls);
 		}
 	});
 });
