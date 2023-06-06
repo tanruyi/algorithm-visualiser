@@ -4,8 +4,25 @@
 
 window.addEventListener("load", function () {
 	/* ===========================================
+    STATES
+    =========================================== */
+
+	let navDropdownControls = {
+		algorithm: false,
+		comparison: false,
+		changelog: false,
+	};
+
+	let mobileNavItemsDisplay = false;
+
+	/* ===========================================
     DOM ELEMENTS
     =========================================== */
+
+	const mobileNavMenuIcon = document.getElementById("mobile-navbar-menu-icon");
+	const mobileNavItems = document.getElementById("nav-items-mobile");
+	const mobileBarsIcon = document.getElementById("mobile-navbar-menu-icon-bars");
+	const mobileDownIcon = document.getElementById("mobile-navbar-menu-icon-down");
 
 	// nav buttons
 	const algorithmsNavButton = document.getElementById("nav-item-algorithms");
@@ -21,12 +38,6 @@ window.addEventListener("load", function () {
 	const algorithmsIcon = document.getElementById("nav-item-algorithms-icon");
 	const comparisonIcon = document.getElementById("nav-item-comparison-icon");
 	const changelogIcon = document.getElementById("nav-item-changelog-icon");
-
-	let navDropdownControls = {
-		algorithm: false,
-		comparison: false,
-		changelog: false,
-	};
 
 	/* ===========================================
     FUNCTIONS
@@ -70,6 +81,20 @@ window.addEventListener("load", function () {
 	/* ===========================================
     EVENT LISTENERS
     =========================================== */
+	mobileNavMenuIcon.addEventListener("click", function () {
+		mobileNavItemsDisplay = !mobileNavItemsDisplay;
+
+		if (mobileNavItemsDisplay) {
+			mobileNavItems.style.display = "block";
+			mobileBarsIcon.style.display = "none";
+			mobileDownIcon.style.display = "inline";
+		} else {
+			mobileNavItems.style.display = "none";
+			mobileBarsIcon.style.display = "inline";
+			mobileDownIcon.style.display = "none";
+		}
+	});
+
 	algorithmsNavButton.addEventListener("click", function (e) {
 		if (navDropdownControls["algorithm"] === true) {
 			navDropdownControls = {
