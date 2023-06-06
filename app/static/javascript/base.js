@@ -22,7 +22,7 @@ window.addEventListener("load", function () {
 	const mobileNavMenuIcon = document.getElementById("mobile-navbar-menu-icon");
 	const mobileNavItems = document.getElementById("nav-items-mobile");
 	const mobileBarsIcon = document.getElementById("mobile-navbar-menu-icon-bars");
-	const mobileDownIcon = document.getElementById("mobile-navbar-menu-icon-down");
+	const mobileUpIcon = document.getElementById("mobile-navbar-menu-icon-up");
 
 	// nav buttons
 	const algorithmsNavButton = document.getElementById("nav-item-algorithms");
@@ -87,11 +87,11 @@ window.addEventListener("load", function () {
 		if (mobileNavItemsDisplay) {
 			mobileNavItems.style.display = "block";
 			mobileBarsIcon.style.display = "none";
-			mobileDownIcon.style.display = "inline";
+			mobileUpIcon.style.display = "inline";
 		} else {
 			mobileNavItems.style.display = "none";
 			mobileBarsIcon.style.display = "inline";
-			mobileDownIcon.style.display = "none";
+			mobileUpIcon.style.display = "none";
 		}
 	});
 
